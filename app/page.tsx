@@ -15,26 +15,24 @@ export default function Home() {
       <Image
         src={Landing}
         alt="Picture of bunch of flowers"
-        className="mt-16 h-[578px] object-cover opacity-85"
+        className="h-[300px] md:h-[578px] object-cover opacity-85"
       />
-      <section className="products mt-10 flex flex-col items-center">
+      <section className="product w-full mt-10 flex flex-col items-center">
         <h2 className="text-lg prompt-medium">Products</h2>
         <span
           className="block w-32 h-1.5"
           style={{ backgroundColor: "#C4D9D5" }}
         ></span>
-        <section className="products-images flex flex-row mt-10 w-full relative">
+        <section className="product-images flex flex-row mt-10 w-full relative">
           <Image
             src={ProductsImage2}
-            style={{ height: "400px" }}
             alt="Picture of products image"
-            className="w-full max-w-[50%] object-cover"
+            className="w-full max-w-[50%] h-[300px] sm:h-[400px] object-cover"
           />
           <Image
             src={ProductsImage1}
-            style={{ height: "400px" }}
             alt="Picture of products image"
-            className="w-full max-w-[50%] object-cover"
+            className="w-full max-w-[50%] h-[300px] sm:h-[400px] object-cover"
           />
           <button
             className={`absolute btn btn-ourproducts opacity-80 text-white prompt-medium top-1/2 left-1/2 ${
@@ -51,26 +49,24 @@ export default function Home() {
           </button>
         </section>
       </section>
-      <section className="products mt-10 flex flex-col items-center">
+      <section className="location mt-10 w-full flex flex-col items-center">
         <h2 className="text-lg prompt-medium">Location</h2>
         <span
           className="block w-32 h-1.5"
           style={{ backgroundColor: "#C4D9D5" }}
         ></span>
-        <section className="locations-image flex flex-row mt-10 w-full relative">
+        <section className="locations-image w-full flex flex-row mt-10 h-full relative">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.8714673922877!2d110.41468567457125!3d-7.696940292320455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5f32a3c75213%3A0x3f06113a334564ff!2sKaninara%20Florist!5e0!3m2!1sen!2sus!4v1724054865345!5m2!1sen!2sus"
-            className="w-full max-w-[50%]"
-            style={{ border: "0", height: "400px" }}
+            className="w-full h-[300px] border-0 sm:h-[400px] sm:max-w-[50%]"
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
           <Image
             src={LocationImage}
-            style={{ height: "400px" }}
             alt="Picture of the situation in the location"
-            className="w-full max-w-[50%] object-cover"
+            className="hidden absolute h-[400px] sm:static sm:block sm:w-full sm:max-w-[50%] sm:object-cover"
           />
         </section>
       </section>

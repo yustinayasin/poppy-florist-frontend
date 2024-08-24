@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yeseva+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  min-height: 100vh;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -43,6 +45,12 @@ body {
   font-style: normal;
 }
 
+.prompt-regular {
+  font-family: "Prompt", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .prompt-medium {
   font-family: "Prompt", sans-serif;
   font-weight: 500;
@@ -57,4 +65,15 @@ body {
 
 .btn-hover {
   opacity: 100;
+}
+
+.menu li:hover {
+  background-color: rgb(226 232 240);
+}
+
+.playfair-display-extrabold {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: italic;
 }

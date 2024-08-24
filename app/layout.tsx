@@ -9,12 +9,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen w-screen mt-8">
-        <h1 className="yeseva-one-regular text-3xl text-center mb-4 ">
-          Poppy Florist
-        </h1>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+      ></meta>
+      <body className="min-h-screen w-screen relative pt-4 sm:pt-8 flex flex-col justify-between">
         <Navbar />
-        <main>{children}</main>
+        <main className="flex flex-col justify-center items-center">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
