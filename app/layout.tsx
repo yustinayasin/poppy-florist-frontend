@@ -15,7 +15,7 @@ export default function RootLayout({
       ></meta>
       <body className="min-h-screen w-screen relative pt-4 sm:pt-8 flex flex-col justify-between">
         <Navbar />
-        <main className="flex flex-col justify-center items-center">
+        <main className="flex flex-col w-full justify-center items-center">
           {children}
         </main>
         <Footer />
