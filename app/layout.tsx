@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Navbar } from "./navbar";
 import { Footer } from "./footer";
+import { LoginProvider } from "./contexts/LoginContext";
 
 export default function RootLayout({
   children,
@@ -13,12 +14,14 @@ export default function RootLayout({
         name="viewport"
         content="width=device-width, initial-scale=1.0"
       ></meta>
-      <body className="min-h-screen w-screen relative pt-4 sm:pt-8 flex flex-col justify-between">
-        <Navbar />
-        <main className="flex flex-col w-full justify-center items-center">
-          {children}
-        </main>
-        <Footer />
+      <body className="min-h-screen w-screen flex flex-col justify-between">
+        <LoginProvider>
+          <Navbar />
+          <main className="flex flex-col w-full justify-center items-center">
+            {children}
+          </main>
+          <Footer />
+        </LoginProvider>
       </body>
     </html>
   );

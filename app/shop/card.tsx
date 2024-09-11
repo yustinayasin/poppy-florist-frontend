@@ -25,7 +25,7 @@ export default function Card({
         onMouseLeave={() => setTimeout(() => setBtnHover(false), 50)}
       >
         <button
-          className={`absolute border border-solid text-sm border-gray-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-3 px-5 w-max rounded-xl bg-black opacity-70 hover:opacity-100 z-50 text-white ${
+          className={`absolute border border-solid text-sm border-gray-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-3 px-5 w-max rounded-xl bg-black opacity-70 hover:opacity-100 z-10 text-white ${
             btnHover ? "visible" : "invisible"
           }`}
         >
@@ -35,6 +35,8 @@ export default function Card({
           src={imageSource}
           alt="Photo of the product"
           className="rounded-2xl h-[248px] lg:h-[338px] object-cover hover:cursor-pointer"
+          width={300}
+          height={200}
         />
       </section>
       <p className="product-name prompt-medium text-base">{productName}</p>

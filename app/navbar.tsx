@@ -7,20 +7,37 @@ import {
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
+import React, { useState, useContext, FormEvent } from "react";
+import Link from "next/link";
+import LoginContext from "./contexts/LoginContext";
+import { useRouter } from "next/navigation";
 
 export function Navbar() {
   const [navActive, setNavActive] = useState(true);
+  const [isProfileClicked, setIsProfileClicked] = useState(true);
+  const { isLogin, setIsLogin } = useContext(LoginContext);
+  const router = useRouter();
+
+  const handleSignOut = (e: FormEvent) => {
+    e.preventDefault();
+    setIsLogin(false);
+  };
+
+  const redirectToLogin = (e: FormEvent) => {
+    e.preventDefault();
+    setIsProfileClicked(true);
+    router.push("/login");
+  };
 
   return (
-    <section className="flex flex-col justify-center items-center w-full mb-10 bg-white">
-      <a
+    <section className="sticky top-0 z-50 shadow-md flex relative pt-4 md:pt-8 flex-col justify-center items-center w-full mb-10 bg-white">
+      <Link
         href="/"
         className="yeseva-one-regular text-center mb-2 text-2xl sm:text-3xl sm:mb-4"
       >
         Poppy Florist
-      </a>
-      <nav className="flex flex-row w-full px-5 py-3 md:py-0 sticky top-0 z-50 justify-between items-center md:justify-center">
+      </Link>
+      <nav className="flex relative flex-row w-full px-5 py-3 md:py-0 justify-between items-center md:justify-center">
         <button
           className="bars-menu h-9 w-9 text-center flex items-center justify-center md:absolute md:invisible rounded-full bg-white hover:bg-black text-black hover:text-white"
           onClick={() => setNavActive(!navActive)}
@@ -44,24 +61,24 @@ export function Navbar() {
           }`}
         >
           <li className="rounded-xl md:rounded-lg">
-            <a href="/" className="block text-center text-lg py-3">
+            <Link href="/" className="block text-center text-lg py-3">
               Home
-            </a>
+            </Link>
           </li>
           <li className="rounded-xl md:rounded-lg">
-            <a href="/about-us" className="block text-lg text-center py-3">
+            <Link href="/about-us" className="block text-lg text-center py-3">
               About Us
-            </a>
+            </Link>
           </li>
           <li className="rounded-xl md:rounded-lg">
-            <a href="/shop" className="block text-lg text-center py-3">
+            <Link href="/shop" className="block text-lg text-center py-3">
               Shop
-            </a>
+            </Link>
           </li>
           <li className="rounded-xl">
-            <a href="#contact" className="block text-lg text-center py-3">
+            <Link href="#contact" className="block text-lg text-center py-3">
               Hiring
-            </a>
+            </Link>
           </li>
         </ul>
         <ul className="personal flex flex-row justify-between md:absolute md:right-8 md:top-6">
@@ -71,13 +88,48 @@ export function Navbar() {
             </button>
           </li>
           <li className="w-full h-full p-2 rounded-full bg-white hover:bg-black text-black hover:text-white">
-            <a
-              href="#profile"
+            <button
               className="h-full p-0 m-0 text-center flex justify-center items-center"
+              onClick={() => setIsProfileClicked(!isProfileClicked)}
             >
               <FontAwesomeIcon className="text-xl" icon={faUser} />
-            </a>
+            </button>
           </li>
+        </ul>
+        <ul
+          className={`menu absolute rounded-[0.85rem] p-3 flex flex-column top-16 w-40 right-4 bg-white shadow-lg border border-solid border-gray-200 ${
+            isProfileClicked ? "invisible" : "visible"
+          }`}
+        >
+          {isLogin ? (
+            <>
+              <li className="rounded-xl md:rounded-lg">
+                <Link
+                  href="/profile"
+                  className="block text-center text-lg py-3"
+                >
+                  Profile
+                </Link>
+              </li>
+              <li className="rounded-xl md:rounded-lg">
+                <button
+                  className="block text-lg text-center py-3"
+                  onClick={(e) => handleSignOut(e)}
+                >
+                  Sign Out
+                </button>
+              </li>
+            </>
+          ) : (
+            <li className="rounded-xl md:rounded-lg">
+              <button
+                className="block text-lg text-center py-3"
+                onClick={(e) => redirectToLogin(e)}
+              >
+                Sign In
+              </button>
+            </li>
+          )}
         </ul>
       </nav>
     </section>

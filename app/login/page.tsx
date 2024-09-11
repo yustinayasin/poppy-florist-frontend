@@ -1,8 +1,17 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, {
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useContext,
+  useEffect,
+} from "react";
 import Image from "next/image";
 import PhotoSignUp from "./../../public/sign-up.jpg";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import LoginContext from "../contexts/LoginContext";
 
 interface FormData {
   email: string;
@@ -14,26 +23,48 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const [error, setError] = useState<string>("");
+  const { setIsLogin } = useContext(LoginContext);
+  const router = useRouter();
+
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
+
+    try {
+      // Hit login API
+      axios.defaults.withCredentials = true;
+      const { data } = await axios.post(
+        `${process.env.NEXT_PUBLIC_FLORIST_API_URL}user/login`,
+        {
+          email: formData.email,
+          password: formData.password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      setIsLogin(true); // Update context value
+      router.push("/");
+    } catch (error: any) {
+      if (error.response) {
+        console.error("Error:", error.response.status, error.response.data);
+      } else if (error.request) {
+        console.error("Error: No response received");
+      } else {
+        console.error("Error:", error.message);
+      }
+    }
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    setError(""); // Clear error after successful submission
+    setFormData({ ...formData, [name]: value });
   };
 
   return (
     <section className="sign-up w-full h-full grid lg:grid-rows-1 lg:grid-cols-2 gap-4">
       <section className="form-wrapper flex flex-cols justify-center items-center lg:col-span-1">
-        <form className="space-y-4 w-[300px]" onSubmit={handleSubmit}>
+        <form className="space-y-4 w-[300px]" onSubmit={handleLogin}>
           <h1 className="text-xl">Sign In</h1>
           <section>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -90,7 +121,7 @@ export default function Login() {
             type="submit"
             className="btn btn-neutral w-full btn-wide bg-black text-white hover:bg-black hover:text-white"
           >
-            Sign Up
+            Sign In
           </button>
           <span className="w-full text-center mt-5 block text-sm">
             Don't have an account?
