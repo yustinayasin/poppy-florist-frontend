@@ -59,6 +59,7 @@ export default function Shop() {
           imageSource={product.FileUrl}
           productName={product.Name}
           productPrice={`Rp ${product.Price}`}
+          productId={product.Id}
         />
       ))}
     </section>

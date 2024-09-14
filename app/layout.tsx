@@ -2,6 +2,7 @@ import "./globals.css";
 import { Navbar } from "./navbar";
 import { Footer } from "./footer";
 import { LoginProvider } from "./contexts/LoginContext";
+import { TotalPriceProvider } from "./contexts/TotalPriceContext";
 
 export default function RootLayout({
   children,
@@ -16,11 +17,13 @@ export default function RootLayout({
       ></meta>
       <body className="min-h-screen w-screen flex flex-col justify-between">
         <LoginProvider>
-          <Navbar />
-          <main className="flex flex-col w-full justify-center items-center">
-            {children}
-          </main>
-          <Footer />
+          <TotalPriceProvider>
+            <Navbar />
+            <main className="flex flex-col w-full justify-center items-center">
+              {children}
+            </main>
+            <Footer />
+          </TotalPriceProvider>
         </LoginProvider>
       </body>
     </html>

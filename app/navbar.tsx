@@ -83,9 +83,12 @@ export function Navbar() {
         </ul>
         <ul className="personal flex flex-row justify-between md:absolute md:right-8 md:top-6">
           <li className="w-full h-full p-2 rounded-full text-xl bg-white hover:bg-black text-black hover:text-white">
-            <button className="h-full w-full p-0 m-0 text-center flex justify-center items-center">
+            <Link
+              href="/checkout"
+              className="h-full w-full p-0 m-0 text-center flex justify-center items-center"
+            >
               <FontAwesomeIcon className="text-xl" icon={faBagShopping} />
-            </button>
+            </Link>
           </li>
           <li className="w-full h-full p-2 rounded-full bg-white hover:bg-black text-black hover:text-white">
             <button
@@ -97,7 +100,7 @@ export function Navbar() {
           </li>
         </ul>
         <ul
-          className={`menu absolute rounded-[0.85rem] p-3 flex flex-column top-16 w-40 right-4 bg-white shadow-lg border border-solid border-gray-200 ${
+          className={`menu absolute rounded-[0.85rem] p-3 flex flex-column top-16 md:top-20 w-40 right-4 bg-white shadow-lg border border-solid border-gray-200 ${
             isProfileClicked ? "invisible" : "visible"
           }`}
         >

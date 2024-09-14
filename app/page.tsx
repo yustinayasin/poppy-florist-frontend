@@ -16,6 +16,7 @@ export default function Home() {
         src={Landing}
         alt="Picture of bunch of flowers"
         className="h-[300px] md:h-[578px] object-cover opacity-85"
+        priority={true}
       />
       <section className="product w-full mt-10 flex flex-col items-center">
         <h2 className="text-lg prompt-medium">Products</h2>

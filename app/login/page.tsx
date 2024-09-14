@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  useState,
-  ChangeEvent,
-  FormEvent,
-  useContext,
-  useEffect,
-} from "react";
+import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
 import Image from "next/image";
 import PhotoSignUp from "./../../public/sign-up.jpg";
 import { useRouter } from "next/navigation";
@@ -23,7 +17,7 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const { setIsLogin } = useContext(LoginContext);
+  const { isLogin, setIsLogin } = useContext(LoginContext);
   const router = useRouter();
 
   const handleLogin = async (e: FormEvent) => {
@@ -44,6 +38,7 @@ export default function Login() {
       );
 
       setIsLogin(true); // Update context value
+      console.log(isLogin);
       router.push("/");
     } catch (error: any) {
       if (error.response) {
@@ -124,7 +119,7 @@ export default function Login() {
             Sign In
           </button>
           <span className="w-full text-center mt-5 block text-sm">
-            Don't have an account?
+            {`Don't have an account`}
             <a href="/sign-up" className="ml-2 prompt-medium underline">
               Register
             </a>
