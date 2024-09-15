@@ -12,8 +12,7 @@ services:
     volumes:
       - .:/app
     command:
-      - "npm"
-      - "start"
+      - "npm run start"
     restart: always
 
   # database:
