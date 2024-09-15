@@ -1,8 +1,6 @@
 services:
   nextjs:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ystnysn/florist-frontend:latest
     ports:
       - "3001:3000"
     networks:
