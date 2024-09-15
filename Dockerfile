@@ -30,4 +30,4 @@ COPY --from=build /app/package.json package.json
 EXPOSE 3000
 
 # Command to run the Next.js app
-CMD ["./poppy-florist-frontend"]
+CMD ["npm", "start"]

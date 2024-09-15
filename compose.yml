@@ -12,7 +12,8 @@ services:
     volumes:
       - .:/app
     command:
-      - "./poppy-florist-frontend"
+      - "npm"
+      - "start"
     restart: always
 
   # database:
