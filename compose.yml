@@ -12,9 +12,7 @@ services:
     volumes:
       - .:/app
     command:
-      - "sh"
-      - "-c"
-      - "ls -a /src && ./poppy-florist-frontend"
+      - "./poppy-florist-frontend"
     restart: always
 
   # database:
