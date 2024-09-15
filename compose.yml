@@ -9,8 +9,12 @@ services:
       - ./config.env
     # environment:
     #   - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
-    # volumes:
-    #   - .:/src
+    volumes:
+      - .:/src
+    command:
+      - "sh"
+      - "-c"
+      - "ls -a /src && npm run start"
     restart: always
 
   # database:
