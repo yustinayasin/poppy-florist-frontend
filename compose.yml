@@ -1,0 +1,49 @@
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    networks:
+      - web-tier
+    env_file:
+      - ./config.env
+    # environment:
+    #   - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+    volumes:
+      - .:/app
+    command:
+      - "sh"
+      - "-c"
+      - "ls -a /src && ./poppy-florist-frontend"
+    restart: always
+
+  database:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    networks:
+      - web-tier
+    env_file:
+      - ./config.env
+    # environment:
+    #   - POSTGRES_DB=${DB_NAME}
+    #   - POSTGRES_USER=${DB_USER}
+    #   - POSTGRES_PASSWORD=${DB_PASS}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  # debug:
+  #   image: busybox
+  #   command: ["/bin/sh", "-c", "cd /app", "ls", "cat /app/.env"]
+  #   volumes:
+  #     - ./.env:/app/.env
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  web-tier: {}
