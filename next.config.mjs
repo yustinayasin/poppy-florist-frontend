@@ -3,10 +3,9 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "139.99.96.99",
-        port: "9000",
-        pathname: "/florist/products/**",
+        protocol: "https",
+        hostname: "poppy-florist.yustinayasin.com",
+        pathname: "/**", // Allowing all images from this domain
       },
     ],
   },
