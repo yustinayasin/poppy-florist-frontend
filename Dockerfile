@@ -25,7 +25,6 @@ COPY --from=build /src/.next /src/.next
 COPY --from=build /src/public /src/public
 COPY --from=build /src/node_modules /src/node_modules
 COPY --from=build /src/package.json /src/package.json
-COPY --from=build /src/config.env /src/config.env
 
 # Expose the port the Next.js app runs on
 EXPOSE 3000
