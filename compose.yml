@@ -7,8 +7,8 @@ services:
       - web-tier
     env_file:
       - ./config.env
-    environment:
-      - NEXT_PUBLIC_FLORIST_API_URL=${NEXT_PUBLIC_FLORIST_API_URL}
+    # environment:
+    #   - NEXT_PUBLIC_FLORIST_API_URL=${NEXT_PUBLIC_FLORIST_API_URL}
     volumes:
       - ./config.env:/src/.env
     command:

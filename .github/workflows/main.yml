@@ -27,6 +27,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/poppy-florist-frontend:latest
+          build-args:
+            NEXT_PUBLIC_FLORIST_API_URL: ${{ secrets.NEXT_PUBLIC_FLORIST_API_URL }}
 
   deploy:
     runs-on: ubuntu-latest
