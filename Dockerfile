@@ -21,10 +21,10 @@ FROM node:18-slim
 WORKDIR /src
 
 # Copy the built files and dependencies from the build stage
-COPY --from=build /src/.next .next
-COPY --from=build /src/public public
-COPY --from=build /src/node_modules node_modules
-COPY --from=build /src/package.json package.json
+COPY --from=build /src/.next /src/.next
+COPY --from=build /src/public /src/public
+COPY --from=build /src/node_modules /src/node_modules
+COPY --from=build /src/package.json /src/package.json
 
 # Expose the port the Next.js app runs on
 EXPOSE 3000
