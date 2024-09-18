@@ -52,7 +52,7 @@ jobs:
 
       - name: Docker compose
         run: |
-          sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; git checkout main; eval "$(ssh-agent -s)"; ssh-add ~/.ssh/githubvps; git pull origin main; cat compose.yml; sudo docker-compose up'
+          sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; git checkout main; eval "$(ssh-agent -s)"; ssh-add ~/.ssh/githubvps; git pull origin main; cat compose.yml; sudo docker-compose down; sudo docker-compose up --build'
 
       # - name: Build the docker again
       #   run: |
