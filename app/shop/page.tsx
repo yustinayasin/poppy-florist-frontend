@@ -29,7 +29,6 @@ export default function Shop() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      console.log(process.env.NEXT_PUBLIC_FLORIST_API_URL);
       try {
         const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_FLORIST_API_URL}product/`,
