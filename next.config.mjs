@@ -7,6 +7,7 @@ const nextConfig = {
         hostname: "139.99.96.99",
         port: "9000",
         pathname: "/florist/products/**",
+        formats: ["image/avif", "image/webp"],
       },
     ],
   },
