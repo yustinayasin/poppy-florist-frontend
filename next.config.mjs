@@ -9,7 +9,6 @@ const nextConfig = {
         pathname: "/florist/products/**",
       },
     ],
-    formats: ["image/avif", "image/webp"],
   },
 };
 
