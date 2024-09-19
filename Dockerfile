@@ -1,6 +1,10 @@
 # Stage 1: Build the Next.js app
 FROM node:18 AS build
 
+# Set env variable
+ARG NEXT_PUBLIC_FLORIST_API_URL
+ENV NEXT_PUBLIC_FLORIST_API_URL=$NEXT_PUBLIC_FLORIST_API_URL
+
 # Set the working directory inside the container
 WORKDIR /src
 
@@ -12,7 +16,7 @@ RUN npm install
 COPY . .
 
 # Build the Next.js app
-RUN npm run build
+RUN NEXT_PUBLIC_FLORIST_API_URL=$NEXT_PUBLIC_FLORIST_API_URL npm run build
 
 # Stage 2: Create a minimal runtime container
 FROM node:18-slim

@@ -27,8 +27,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/poppy-florist-frontend:latest
-          # build-args:
-          #   NEXT_PUBLIC_FLORIST_API_URL: ${{ secrets.NEXT_PUBLIC_FLORIST_API_URL }}
+          build-args:
+            NEXT_PUBLIC_FLORIST_API_URL: ${{ secrets.NEXT_PUBLIC_FLORIST_API_URL }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,14 +52,10 @@ jobs:
         run: |
           sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'sudo docker pull ystnysn/poppy-florist-frontend:latest'
 
-      - name: Docker compose
+      # - name: Docker compose
+      #   run: |
+      #     sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; git checkout main; eval "$(ssh-agent -s)"; ssh-add ~/.ssh/githubvps; git pull origin main; cat compose.yml; sudo docker-compose down; sudo docker-compose up --build'
+
+      - name: Docker run image
         run: |
-          sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; git checkout main; eval "$(ssh-agent -s)"; ssh-add ~/.ssh/githubvps; git pull origin main; cat compose.yml; sudo docker-compose down; sudo docker-compose up --build'
-
-      # - name: Build the docker again
-      #   run: |
-      #     sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; git checkout main; eval "$(ssh-agent -s)"; ssh-add ~/.ssh/githubvps; git pull origin main; docker build -t ystnysn/florist-frontend:latest .'
-
-      # - name: Remove the previous container name and run newest image
-      #   run: |
-      #     sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; docker stop poppy-florist-frontend-container; docker rm poppy-florist-frontend-container; docker run -d -p 3001:3000 --name poppy-florist-frontend-container ystnysn/florist-frontend:latest'
+          sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; docker stop frontend-container; docker rm frontend-container; docker run -d --name frontend-container -p 3001:3000 ystnysn/poppy-florist-frontend'
