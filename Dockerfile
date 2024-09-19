@@ -3,7 +3,6 @@ FROM node:18 AS build
 
 # Set env variable
 ARG NEXT_PUBLIC_FLORIST_API_URL
-ENV NEXT_PUBLIC_FLORIST_API_URL=$NEXT_PUBLIC_FLORIST_API_URL
 
 # Set the working directory inside the container
 WORKDIR /src
