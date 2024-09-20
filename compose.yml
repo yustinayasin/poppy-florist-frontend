@@ -5,12 +5,12 @@ services:
       - "3001:3000"
     networks:
       - web-tier
-    env_file:
-      - ./config.env
+    # env_file:
+    #   - ./config.env
     # environment:
     #   - NEXT_PUBLIC_FLORIST_API_URL=${NEXT_PUBLIC_FLORIST_API_URL}
-    volumes:
-      - ./config.env:/src/.env
+    # volumes:
+    #   - ./config.env:/src/.env
     command:
       - "sh"
       - "-c"
