@@ -52,10 +52,9 @@ jobs:
         run: |
           sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'sudo docker pull ystnysn/poppy-florist-frontend:latest'
 
-      # - name: Docker compose
-      #   run: |
-      #     sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; git checkout main; eval "$(ssh-agent -s)"; ssh-add ~/.ssh/githubvps; git pull origin main; cat compose.yml; sudo docker-compose down; sudo docker-compose up --build'
-
-      - name: Docker run image
+      - name: Docker compose
         run: |
-          sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; docker stop frontend-container; docker rm frontend-container; docker run -d --name frontend-container -p 3001:3000 ystnysn/poppy-florist-frontend'
+          sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; sudo docker-compose up'
+      # - name: Docker run image
+      #   run: |
+      #     sudo sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.VPS_IPV4 }} 'cd frontend/poppy-florist-frontend; docker stop frontend-container; docker rm frontend-container; docker run -d --name frontend-container -p 3001:3000 ystnysn/poppy-florist-frontend'

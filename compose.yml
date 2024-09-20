@@ -14,7 +14,9 @@ services:
     command:
       - "sh"
       - "-c"
-      - "ls -a /src && npm run start"
+      - "ls -a /src && docker stop frontend-container"
+      - "docker rm frontend-container"
+      - "docker run -d --name frontend-container -p 3001:3000 ystnysn/poppy-florist-frontend"
     restart: always
 
   # database:
